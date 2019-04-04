@@ -1,5 +1,38 @@
-var flag = true;
+var characterSelected = false, defenderSelected = false;
 var chosenChar, defendingChar;
+
+var obiWanKenobi = {
+    id: "obi",
+    name: "Obi-Wan Kenobi",
+    healthpoints: 120,
+    attackPower: 8,
+    baseAttackPower: 8
+};
+
+var lukeSkywalker = {
+    id: "luke",
+    name: "Luke Skywalker",
+    healthpoints: 100,
+    attackPower: 5,
+    baseAttackPower: 5
+};
+
+var darthSidious = {
+    id: "ds",
+    name: "Darth Sidious",
+    healthpoints: 150,
+    attackPower: 20,
+    baseAttackPower: 20
+};
+
+var darthMaul = {
+    id: "dm",
+    name: "Darth Maul",
+    healthpoints: 180,
+    attackPower: 25,
+    baseAttackPower: 25
+};
+
 function moveAsEnemies() {
     if ($(".card").hasClass("charactersPool")) {
         $(".charactersPool").each(function () {
@@ -13,17 +46,20 @@ $(document).ready(function () {
     $(".card").click(function () {
         var a = $(this).attr("id");
         console.log(a);
-        if (flag) {
+        if (!characterSelected) {
             chosenChar = a;
             $("#" + chosenChar).removeClass("charactersPool");
             $("#" + chosenChar).addClass("yourChar");
-            flag = false;
+            characterSelected = true;
             moveAsEnemies();
-        } else {
-            defendingChar = a;
-            $("#" + defendingChar).removeClass("charactersPool");
-            $("#" + defendingChar).addClass("opponent");
-            $(".enemiesList").append(this);
+        } else if (!defenderSelected) {
+            if ($("#" + a).hasClass("opponent")) {
+                defendingChar = a;
+                $("#" + defendingChar).removeClass("opponent");
+                $("#" + defendingChar).addClass("defender");
+                $(".defenderSpace").append(this);
+                defenderSelected = true;
+            }
         }
     });
 });

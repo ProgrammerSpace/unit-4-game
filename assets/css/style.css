@@ -1,9 +1,24 @@
+img {
+    width: 150px;
+    height: 100px;
+}
 .charactersPool {
     background-color: white;
+    font-weight: bolder;
 }
 .yourChar {
-    background-color: green;
+    background-color: lightgreen;
+    font-weight: bolder;
 }
 .opponent {
-    background-color: red;
+    background-color: palevioletred;
+    font-weight: bolder;
+}
+.defender {
+    background-color: brown;
+    color: white;
+    font-weight: bolder;
+}
+.card {
+    text-align: center;
 }
