@@ -1,22 +1,29 @@
+body {
+    background-image: url("../images/bg1.jpg");
+    color: white;
+}
 img {
     width: 150px;
     height: 100px;
 }
 .charactersPool {
-    background-color: white;
+    background-color: lightyellow;
+    color: black;
     font-weight: bolder;
 }
 .yourChar {
     background-color: lightgreen;
+    color: black;
     font-weight: bolder;
 }
 .opponent {
     background-color: palevioletred;
+    color: black;
     font-weight: bolder;
 }
 .defender {
     background-color: brown;
-    color: white;
+    color: lightyellow;
     font-weight: bolder;
 }
 .card {

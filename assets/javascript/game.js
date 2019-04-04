@@ -35,6 +35,7 @@ var darthMaul = {
 
 function moveAsEnemies() {
     if ($(".card").hasClass("charactersPool")) {
+        $("#opp").html("");
         $(".charactersPool").each(function () {
             $(".charactersPool").removeClass("charactersPool").addClass("opponent");
             $(".enemiesList").append(this);
@@ -57,6 +58,7 @@ $(document).ready(function () {
                 defendingChar = a;
                 $("#" + defendingChar).removeClass("opponent");
                 $("#" + defendingChar).addClass("defender");
+                $("#def").html("");
                 $(".defenderSpace").append(this);
                 defenderSelected = true;
             }
