@@ -19,59 +19,60 @@
     <div class="container">
         <div class="row charactersList">
             <div class="col-md-12">
-                <h1>Characters</h1>
+                <h1 id="head">Characters</h1>
             </div>
-            <div id="char1" class="card charactersPool m-2 float-left">
+            <div id="obi" class="card charactersPool m-2 float-left">
                 <div class="card-body">
                     <h5>Obi-Wan Kenobi</h5>
                     <img src="assets/images/obiwankenobi.jpg" alt="Obi-Wan Kenobi" id="obi-image" style="width: 200px">
-                    <p class="health">120</p>
+                    <p class="obi-health">120</p>
                 </div>
             </div>
-            <div id="char2" class="card charactersPool m-2 float-left">
+            <div id="luke" class="card charactersPool m-2 float-left">
                 <div class="card-body">
                     <h5>Luke Skywalker</h5>
                     <img src="assets/images/lukeskywalker.jpg" alt="Luke Skywalker" id="luke-image"
                         style="width: 200px">
-                    <p class="health">100</p>
+                    <p class="luke-health">100</p>
                 </div>
             </div>
-            <div id="char3" class="card charactersPool m-2 float-left">
+            <div id="ds" class="card charactersPool m-2 float-left">
                 <div class="card-body">
                     <h5>Darth Sidious</h5>
                     <img src="assets/images/darthsidious.jpg" alt="Darth Sidious" id="ds-image" style="width: 200px">
-                    <p class="health">150</p>
+                    <p class="ds-health">150</p>
                 </div>
             </div>
-            <div id="char4" class="card charactersPool m-2 float-left">
+            <div id="dm" class="card charactersPool m-2 float-left">
                 <div class="card-body">
                     <h5>Darth Maul</h5>
                     <img src="assets/images/darthmaul.jpg" alt="Darth Maul" id="dm-image" style="width: 200px">
-                    <p class="health">180</p>
+                    <p class="dm-health">180</p>
                 </div>
             </div>
         </div>
         <div class="row enemiesList">
             <div class="col-md-12">
                 <h1>Opponents</h1>
-                <p id="opp">Your opponents will show up here!</p>
             </div>
 
         </div>
         <div class="row defenderSpace">
             <div class="col-md-12">
                 <h1>Defender</h1>
-                <p id="def">Your defender will show up here!</p>
             </div>
 
         </div>
+        <button id="attack" class="btn btn-secondary">Attack</button>
         <div class="row scoreReport">
             <div class="col-md-12">
-                <h1 class="userReport"></h1>
-                <h1 class="defenderReport"></h1>
+                <h3>Choose your character</h3>
+                <h3 class="userReport"></h3>
+                <h3 class="defenderReport"></h3>
             </div>
 
         </div>
+        <button id="rst" class="btn btn-secondary">Reset</button>
     </div>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
