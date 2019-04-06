@@ -17,62 +17,33 @@
 
 <body>
     <div class="container">
+        <h1 id="head">Characters</h1>
         <div class="row charactersList">
             <div class="col-md-12">
-                <h1 id="head">Characters</h1>
-            </div>
-            <div id="obi" class="card charactersPool m-2 float-left">
-                <div class="card-body">
-                    <h5>Obi-Wan Kenobi</h5>
-                    <img src="assets/images/obiwankenobi.jpg" alt="Obi-Wan Kenobi" id="obi-image" style="width: 200px">
-                    <p class="obi-health">120</p>
-                </div>
-            </div>
-            <div id="luke" class="card charactersPool m-2 float-left">
-                <div class="card-body">
-                    <h5>Luke Skywalker</h5>
-                    <img src="assets/images/lukeskywalker.jpg" alt="Luke Skywalker" id="luke-image"
-                        style="width: 200px">
-                    <p class="luke-health">100</p>
-                </div>
-            </div>
-            <div id="ds" class="card charactersPool m-2 float-left">
-                <div class="card-body">
-                    <h5>Darth Sidious</h5>
-                    <img src="assets/images/darthsidious.jpg" alt="Darth Sidious" id="ds-image" style="width: 200px">
-                    <p class="ds-health">150</p>
-                </div>
-            </div>
-            <div id="dm" class="card charactersPool m-2 float-left">
-                <div class="card-body">
-                    <h5>Darth Maul</h5>
-                    <img src="assets/images/darthmaul.jpg" alt="Darth Maul" id="dm-image" style="width: 200px">
-                    <p class="dm-health">180</p>
-                </div>
             </div>
         </div>
+        <h1>Opponents</h1>
         <div class="row enemiesList">
             <div class="col-md-12">
-                <h1>Opponents</h1>
             </div>
 
         </div>
+        <h1>Defender</h1>
         <div class="row defenderSpace">
             <div class="col-md-12">
-                <h1>Defender</h1>
             </div>
 
         </div>
         <button id="attack" class="btn btn-secondary">Attack</button>
         <div class="row scoreReport">
             <div class="col-md-12">
-                <h3>Choose your character</h3>
+                <h3 class="message"></h3>
                 <h3 class="userReport"></h3>
                 <h3 class="defenderReport"></h3>
             </div>
 
         </div>
-        <button id="rst" class="btn btn-secondary">Reset</button>
+        <button id="rst" class="btn btn-secondary">Restart</button>
     </div>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
