@@ -1,7 +1,9 @@
+//Global variables
 var characterSelected = false, defenderSelected = false;
 var chosenChar = {}, defendingChar = {};
 var obi, luke, ds, dm, gameTracker = 0;
 
+//Initialise character objects
 function InitCharacter(id, name, health, attack, counter, picture) {
     this.id = id;
     this.name = name;
@@ -12,23 +14,19 @@ function InitCharacter(id, name, health, attack, counter, picture) {
     this.picture = picture;
 }
 
+//Initialize character cards in web page
 function initCharacterSpace(char) {
     var newDiv = $("<div>");
     newDiv.addClass("card charactersPool m-2 float-left");
-    // charDiv.addClass(charClass);
     newDiv.attr("id", char.id);
-    // charDiv.attr("health", char.health);
-    // charDiv.css("text-align", "center");
     var bodyDiv = $("<div>")
     bodyDiv.addClass("card-body");
     var title = $("<h5>");
     title.text(char.name);
-    // bodyDiv.text(char.name);
     bodyDiv.append(title);
 
     var charImg = $("<img>");
     charImg.attr("src", char.picture);
-    // charImg.addClass("char-pic");
     bodyDiv.append(charImg);
 
     var hp = $("<p>");
@@ -39,6 +37,8 @@ function initCharacterSpace(char) {
 
     $(".charactersList").append(newDiv);
 }
+
+//Reset game
 function reset() {
     gameTracker = 0;
     $(".charactersList").empty();
@@ -47,15 +47,18 @@ function reset() {
     initCharacterSpace(ds = new InitCharacter("ds", "Darth Sidious", 150, 20, 20, "assets/images/darthsidious.jpg"));
     initCharacterSpace(dm = new InitCharacter("dm", "Darth Maul", 180, 25, 25, "assets/images/darthmaul.jpg"));
 
-
+    $(".message").empty();
+    $(".userReport").empty();
+    $(".defenderReport").empty();
     $(".enemiesList").empty();
     $(".defenderSpace").empty();
     $("#attack").hide();
     characterSelected = false;
     defenderSelected = false;
-    $("#userReport, #defenderReport").empty;
 
 }
+
+//set user character and defender character
 function moveToStage(player, role) {
     if (role == "user") {
         chosenChar.id = this[player].id;
@@ -71,6 +74,8 @@ function moveToStage(player, role) {
         defendingChar.counterAttackPower = this[player].counterAttackPower;
     }
 }
+
+//Move cards to opponent space
 function moveAsEnemies() {
     $(".enemiesList").show();
     if ($(".card").hasClass("charactersPool")) {
@@ -82,34 +87,42 @@ function moveAsEnemies() {
     }
 
 }
+
+//Main routine
 $(document).ready(function () {
     reset();
-    // $(".card").click(function () {
     $(".row").on('click', '.card', function () {
         var chosenId = $(this).attr("id");
         console.log(chosenId);
+        //Choosing user character
         if (!characterSelected) {
             $("#" + chosenId).removeClass("charactersPool").addClass("yourChar");
             $("#head").html("<h1 id=head>Your Character</h1>");
+            moveAsEnemies();
+
             characterSelected = true;
             gameTracker = 1;
-            moveAsEnemies();
             moveToStage(chosenId, "user");
+
+            //Choosing defender character
         } else if (!defenderSelected) {
             if ($("#" + chosenId).hasClass("opponent")) {
                 $("#" + chosenId).removeClass("opponent").addClass("defender");
+                moveToStage(chosenId, "defender");
+
                 $("#def").html("");
                 $(".defenderSpace").append(this);
-                moveToStage(chosenId, "defender");
-                $(".defenderSpace").show();
                 $("#attack").show();
                 defenderSelected = true;
                 gameTracker = 2;
             }
         }
     });
+
     $("#attack").click(function () {
         if (defenderSelected) {
+
+            //User character to attack defender
             if (chosenChar.healthpoints > 0 && gameTracker == 2) {
                 defendingChar.healthpoints -= chosenChar.attackPower;
                 $(".userReport").text("You attacked " + defendingChar.name + " for " + chosenChar.attackPower + " damage");
@@ -117,26 +130,38 @@ $(document).ready(function () {
                 console.log("new ap: " + chosenChar.attackPower);
                 $("." + defendingChar.id + "-health").html("<p>" + defendingChar.healthpoints + "</p>");
             } else {
-                $(".message").text("Game Over!!");
+
+                //User lost game
+                $(".message").text("Game Over!! Restart to play again");
                 $(".userReport").text("");
                 $(".defenderReport").text("");
                 gameTracker = 0;
             }
+
+            //defender to attack user
             if (defendingChar.healthpoints > 0 && gameTracker == 2) {
                 chosenChar.healthpoints -= defendingChar.counterAttackPower;
                 $("." + chosenChar.id + "-health").html("<p>" + chosenChar.healthpoints + "</p>");
                 $(".defenderReport").text(defendingChar.name + " attacked you for " + defendingChar.counterAttackPower + " damage");
             } else if (defendingChar.healthpoints <= 0) {
+
+                //choose new defender
+                $("#" + defendingChar.id).removeClass("defender");
                 $("#" + defendingChar.id).hide();
                 gameTracker = 1;
                 defenderSelected = false;
+                if (!$(".card").hasClass("opponent")) {
+
+                    //User wins
+                    $(".message").text("You won!! Restart to play again");
+                    $(".userReport").text("");
+                    $(".defenderReport").text("");
+                }
             }
         }
 
     });
     $("#rst").click(function () {
         reset();
-        console.log(characterSelected);
-        console.log(defenderSelected);
     });
 });
